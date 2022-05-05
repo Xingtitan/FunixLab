@@ -1,21 +1,12 @@
 const path = require("path");
 const express = require("express");
-const expressHbs = require("express-handlebars");
 
 // Ko cần dùng thư viện bodyParse vì đã tích hợp vào express
 // const bodyParser = require("body-parser");
 
 const app = express();
 
-app.engine(
-  "hbs",
-  expressHbs({
-    layoutDir: "views/layouts/",
-    defaultLayout: "main-layout",
-    extname: "hbs",
-  })
-);
-app.set("view engine", "hbs");
+app.set("view engine", "ejs");
 app.set("views", "views");
 
 const adminData = require("./routes/admin");
