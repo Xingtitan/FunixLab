@@ -18,16 +18,17 @@ class ProductController {
   };
 
   getProducts = (req, res, next) => {
-    const products = Product.fetchAll();
-    res.render("shop", {
-      prods: products,
-      pageTitle: "Shop",
-      path: "/",
-      hasProduct: products.length > 0,
-      activeShop: true,
-      productCSS: true,
+    Product.fetchAll((products) => {
+      res.render("shop", {
+        prods: products,
+        pageTitle: "Shop",
+        path: "/",
+        hasProduct: products.length > 0,
+        activeShop: true,
+        productCSS: true,
+      });
     });
   };
 }
 
-module.exports = new ProductController;
+module.exports = new ProductController();
