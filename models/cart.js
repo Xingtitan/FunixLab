@@ -22,7 +22,7 @@ module.exports = class Cart {
       );
       let updateProd;
       const existingProduct = cart.products[existingProductIndex];
-      // Add new prodcut / increase quantity
+      // Add new prodcut/increase quantity
       if (existingProduct) {
         updateProd = { ...existingProduct };
         updateProd.qty = updateProd.qty + 1;
