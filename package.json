@@ -1,23 +1,31 @@
 {
-  "name": "nodejs-complete-guide",
+  "name": "nodejs-funix",
   "version": "1.0.0",
-  "description": "Complete Node.js Guide",
+  "description": "",
   "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.0.0",
+    "pug": "^3.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.14"
+  },
+  
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js",
-    "start-server": "node app.js"
+    "start": "nodemon ./app.js"
   },
-  "author": "Maximilian Schwarzmüller",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phongtran11/NodeJS-Funnix.git"
+  },
+  "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "nodemon": "^1.18.3"
+  "bugs": {
+    "url": "https://github.com/phongtran11/NodeJS-Funnix/issues"
   },
-  "dependencies": {
-    "body-parser": "^1.18.3",
-    "ejs": "^2.6.1",
-    "express": "^4.16.3",
-    "express-handlebars": "^3.0.0",
-    "pug": "^2.0.3"
-  }
+  "homepage": "https://github.com/phongtran11/NodeJS-Funnix#readme"
 }
