@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+
 const Cart = require('./cart');
 
 const p = path.join(
@@ -29,12 +30,15 @@ module.exports = class Product {
 
   save() {
     getProductsFromFile(products => {
+      // Nếu đã tồn tại id => dùng để edit product
       if (this.id) {
-        const existingProduct = products.findIndex(product => product.id === this.id);
-        const updateProduct = [...products];
-        updateProduct[existingProduct] = this;
-        console.log('updateProduct',updateProduct);
-        fs.writeFile(p, JSON.stringify(updateProduct), err => {
+        // Tìm index của id trong mảng products đọc từ path
+        const existingProductIndex = products.findIndex(
+          prod => prod.id === this.id
+        );
+        const updatedProducts = [...products];
+        updatedProducts[existingProductIndex] = this;
+        fs.writeFile(p, JSON.stringify(updatedProducts), err => {
           console.log(err);
         });
       } else {
@@ -50,11 +54,10 @@ module.exports = class Product {
   static deleteById(id) {
     getProductsFromFile(products => {
       const product = products.find(prod => prod.id === id);
-      console.log('product',product)
-      const updateProduct = products.filter(prod=> prod.id !== id);
-      fs.writeFile(p, JSON.stringify(updateProduct), err => {
+      const updatedProducts = products.filter(prod => prod.id !== id);
+      fs.writeFile(p, JSON.stringify(updatedProducts), err => {
         if (!err) {
-          Cart.deleteProduct(id, product.price)
+          Cart.deleteProduct(id, product.price);
         }
       });
     });
@@ -64,7 +67,7 @@ module.exports = class Product {
     getProductsFromFile(cb);
   }
 
-  static findById (id, cb) {
+  static findById(id, cb) {
     getProductsFromFile(products => {
       const product = products.find(p => p.id === id);
       cb(product);
